@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+body {
+  background-color: var(--backgroundColor);
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  white-space: nowrap;
+  color: var(--primaryColor);
+  justify-content: center;
+}
+
+.logo > svg {
+  fill: var(--primaryColor);
+}
+
+.text-disabled {
+  color: var(--textColorSecondary) !important;
+}
+
+
+
+.bg-black {
+  background-color: #000000 !important;
+}
+
+.title {
+  font-weight: bold;
+  line-height: 25px;
+}
+.sub-title {
+  font-weight: 200;
+  color: rgba(133, 133, 133, 1);
+  line-height: 25px;
+}
+.expiry-date {
+  color: rgba(255, 73, 73, 1);
+}
+.point-header {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: -0.03em;
+}
+.qr-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #484848;
+}
+.qr-code-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #484848;
+  /* font-family: Sukhumvit Set !important; */
+}
+.modal-content-me {
+  background-color: rgba(24, 24, 34, 1);
+}
+.qr-header-title {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.qr-footer-title {
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  line-height: 19px;
+  padding: 10px;
+  font-size: 12px !important;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 96px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+.warpper {
+  height: 100px;
+}
+.button {
+  column-count: 5;
+}
+.btn-outline-secondary {
+  color: #f8f9fa;
+}
+
+.img-qr {
+  width: 200px !important;
+  height: auto !important;
+}
+
+.img-privilege {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 350px) {
+
+}
+
+@media only screen and (min-width: 351px) and (max-width: 450px)  {
+  .img-privilege {
+    width: 300px !important;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .img-privilege {
+    width: 400px !important;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .img-privilege {
+    width: 500px !important;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .img-privilege {
+    width: 550px !important;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .img-privilege {
+    width: 550px !important;
+    height: auto;
+  }
+}
+
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+body {
+  margin: 0;
+  font-family: Sukhumvit Set !important;
+}
+@font-face {
+  font-family: "Sukhumvit Set";
+  src: url(../src/fonts/SukhumvitSet-Text.ttf);
+}

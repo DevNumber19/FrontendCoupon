@@ -1,0 +1,85 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Sukhumvit Set', 'Thai Sans Neue', sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-black {
+  background-color: #000000 !important;
+}
+
+.title {
+  font-weight: bold;
+  line-height: 25px;
+}
+.sub-title {
+  font-weight: 200;
+  color: rgba(133, 133, 133, 1);
+  line-height: 25px;
+}
+.expiry-date {
+  color: rgba(255, 73, 73, 1);
+}
+.point-header {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: -0.03em;
+}
+.qr-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #484848;
+}
+.qr-code-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #484848;
+}
+.modal-content-me {
+  background-color: rgba(24, 24, 34, 1);
+}
+.qr-header-title {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.qr-footer-title {
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  line-height: 19px;
+  padding: 10px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 96px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+.warpper {
+  height: 100px;
+}
+.button {
+  column-count: 5;
+}
+.btn-outline-secondary {
+  color: #f8f9fa;
+}

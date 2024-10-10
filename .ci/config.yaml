@@ -1,0 +1,86 @@
+# --- Project and Deployment Configuration Here ---
+variables:
+  REGISTRY_HOST: 788877216814.dkr.ecr.ap-southeast-1.amazonaws.com
+  REGISTRY_URL: /$CI_PROJECT_PATH
+  DEPLOY_TARGET: $FY_PROJECT_NAME-$CI_PROJECT_NAME
+  
+stages:
+  - build
+  - deploy
+
+.deploy-default-ecs: &deploy-default
+  image:
+    name: amazon/aws-cli
+    entrypoint: [""]
+  script:
+    - sleep 10
+    - echo "--- --- --- --- --- --- --- --- ---"
+    - aws codepipeline get-pipeline-state --name $FY_PROJECT_NAME-$CI_ENVIRONMENT_NAME-$CI_PROJECT_NAME
+    - sleep 10
+    - echo "--- --- --- --- --- --- --- --- ---"
+
+.docker-build-default-ecs: &docker-build-default
+  image: bentolor/docker-dind-awscli
+  before_script:
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $REGISTRY_HOST
+  script:
+    - docker build --build-arg BUILD_ENV=$CI_ENVIRONMENT_NAME -t $REGISTRY_HOST$REGISTRY_URL:$CI_ENVIRONMENT_NAME-$CI_COMMIT_SHORT_SHA .
+    - docker tag $REGISTRY_HOST$REGISTRY_URL:$CI_ENVIRONMENT_NAME-$CI_COMMIT_SHORT_SHA $REGISTRY_HOST$REGISTRY_URL:$CI_ENVIRONMENT_NAME-latest
+    - docker push $REGISTRY_HOST$REGISTRY_URL:$CI_ENVIRONMENT_NAME-$CI_COMMIT_SHORT_SHA
+    - docker push $REGISTRY_HOST$REGISTRY_URL:$CI_ENVIRONMENT_NAME-latest
+    - aws codepipeline start-pipeline-execution --name $FY_PROJECT_NAME-$CI_ENVIRONMENT_NAME-$CI_PROJECT_NAME
+
+# ---
+
+dev-docker-build:
+  stage: build
+  environment:
+    name: dev
+  <<: *docker-build-default
+  only:
+    - development
+
+dev-deploy:
+  stage: deploy
+  environment:
+    name: dev
+  <<: *deploy-default
+  only:
+    - development
+
+# ---
+
+uat-docker-build:
+  stage: build
+  environment:
+    name: uat
+  <<: *docker-build-default
+  only:
+    - uat
+
+uat-deploy:
+  stage: deploy
+  environment:
+    name: uat
+  <<: *deploy-default
+  only:
+    - uat
+
+# ---
+
+prod-docker-build:
+  stage: build
+  environment:
+    name: prod
+  <<: *docker-build-default
+  only:
+    - master
+
+prod-deploy:
+  stage: deploy
+  environment:
+    name: prod
+  <<: *deploy-default
+  when: manual
+  only:
+    - master
